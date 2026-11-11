@@ -5,10 +5,8 @@
   "version": "1.0.0",
   "categories": [
     "AUTOMATION",
-    "DEVELOPER_TOOLS",
-    "MARKETING",
     "SECURITY",
-    "WEB_SCRAPING"
+    "MARKETING"
   ],
   "minMemoryMbytes": 256,
   "maxMemoryMbytes": 1024,
