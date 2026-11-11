@@ -3,8 +3,12 @@
   "fields": {
     "type": "object",
     "properties": {
+      "_type": {
+        "type": ["string", "null"],
+        "description": "Row kind: offer (the summary record) or empty for scan/demo rows."
+      },
       "domain": {
-        "type": "string",
+        "type": ["string", "null"],
         "description": "Scanned SNI domain (lowercase)."
       },
       "input": {
@@ -16,11 +20,11 @@
         "description": "Operator / CDN category label, e.g. Банки."
       },
       "ok": {
-        "type": "boolean",
+        "type": ["boolean", "null"],
         "description": "True when the HTTPS status probe succeeded."
       },
       "tls13": {
-        "type": "boolean",
+        "type": ["boolean", "null"],
         "description": "True when the bare TLS handshake negotiated TLS 1.3."
       },
       "alpn": {
@@ -56,32 +60,65 @@
         "description": "Storefront URL of the full verified base."
       },
       "offer": {
-        "type": ["object", "null"],
-        "description": "Pro offer summary record."
+        "type": ["string", "object", "null"],
+        "description": "One-line Pro offer string (scan and demo rows) or the full Pro offer object (the summary record)."
+      },
+      "product": {
+        "type": ["string", "null"],
+        "description": "Offer record: product name."
+      },
+      "code": {
+        "type": ["string", "null"],
+        "description": "Offer record: product code, e.g. TW1-SNI."
+      },
+      "price_rub": {
+        "type": ["number", "null"],
+        "description": "Offer record: price in RUB."
+      },
+      "demoDomains": {
+        "type": ["integer", "null"],
+        "description": "Offer record: size of the free demo slice."
+      },
+      "totalDomains": {
+        "type": ["integer", "null"],
+        "description": "Offer record: size of the full verified base."
+      },
+      "store_url": {
+        "type": ["string", "null"],
+        "description": "Offer record: storefront URL."
+      },
+      "checkout_url": {
+        "type": ["string", "null"],
+        "description": "Offer record: checkout URL."
+      },
+      "plati_url": {
+        "type": ["string", "null"],
+        "description": "Offer record: Plati.Market lot URL."
+      },
+      "platiLotId": {
+        "type": ["integer", "null"],
+        "description": "Offer record: Plati.Market lot id."
+      },
+      "seller": {
+        "type": ["string", "null"],
+        "description": "Offer record: seller."
+      },
+      "delivery": {
+        "type": ["string", "null"],
+        "description": "Offer record: delivery terms."
+      },
+      "free": {
+        "type": ["array", "null"],
+        "description": "Offer record: what the free tier includes."
+      },
+      "paid": {
+        "type": ["array", "null"],
+        "description": "Offer record: what the Pro key adds."
+      },
+      "note": {
+        "type": ["string", "null"],
+        "description": "Offer record: one-line summary."
       }
-    }
-  },
-  "views": {
-    "scan": {
-      "title": "SNI scan results",
-      "transformation": {
-        "fields": ["domain", "ok", "tls13", "alpn", "ping_ms", "https_status", "compatibility", "tier", "source"]
-      },
-      "display": { "component": "table" }
-    },
-    "demo": {
-      "title": "Demo sample (25 domains)",
-      "transformation": {
-        "fields": ["domain", "category", "tls13", "alpn", "ping_ms", "https_status", "recommended_client"]
-      },
-      "display": { "component": "table" }
-    },
-    "offer": {
-      "title": "Pro offer",
-      "transformation": {
-        "fields": ["offer"]
-      },
-      "display": { "component": "table" }
     }
   }
 }
