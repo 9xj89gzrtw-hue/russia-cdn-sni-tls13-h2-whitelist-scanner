@@ -1,4 +1,5 @@
 {
+  "actorSpecification": 1,
   "title": "SNI scanner dataset",
   "type": "object",
   "description": "One row per scanned SNI domain (TLS 1.3 + ALPN h2 + HTTPS verdict with real ping_ms), the free 25-domain demo slice, then the Pro offer summary record.",
