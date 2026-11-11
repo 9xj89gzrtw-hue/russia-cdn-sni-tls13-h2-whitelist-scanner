@@ -1,0 +1,19 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Russia CDN TLS 1.3 + ALPN h2 White-List SNI Scanner — output",
+  "description": "Scanned SNI domains (TLS 1.3 + ALPN h2 + HTTPS status) plus a free 25-domain demo of the 1,384-domain LTE white-list base, then one offer record pointing at the Pro generator and the Plati.Market lot 6390371.",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Scan results",
+      "description": "One row per scanned domain (ok, tls13, alpn, ping_ms, https_status, compatibility), then the 25-domain demo sample, then one offer record with the full-base purchase links.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    },
+    "csv": {
+      "type": "string",
+      "title": "Scan results (CSV)",
+      "description": "Same rows as CSV, ready for Excel / Google Sheets.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items?format=csv"
+    }
+  }
+}

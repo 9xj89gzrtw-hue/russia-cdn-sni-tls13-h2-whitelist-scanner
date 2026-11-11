@@ -1,0 +1,40 @@
+{
+  "name": "russia-cdn-sni-tls13-h2-whitelist-scanner",
+  "version": "1.0.0",
+  "description": "Apify Actor + local scanner for Russian CDN / white-list SNI domains: bare TLS 1.3 + ALPN h2 + IPv4 handshake, HTTPS status probe and realistic VLESS Reality / XHTTP compatibility verdict. Ships the free 25-domain demo of the 1,384-domain LTE white-list base for Russia (MTS, Megafon, Beeline, T2) and routes buyers to the Pro offer on Plati.Market.",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test tests/",
+    "smoke": "node src/main.js --domains gosuslugi.ru,mos.ru --no-offer --no-demo"
+  },
+  "keywords": [
+    "apify",
+    "apify-actor",
+    "sni",
+    "tls",
+    "tls13",
+    "alpn",
+    "h2",
+    "cdn",
+    "reality",
+    "xhttp",
+    "vless",
+    "white-list",
+    "whitelist",
+    "vpn",
+    "network-probing",
+    "russia",
+    "marketplace",
+    "security"
+  ],
+  "author": "9xj89gzrtw-hue",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "apify": "^3.2.0"
+  }
+}
