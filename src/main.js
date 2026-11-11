@@ -39,18 +39,45 @@ async function localMain() {
 
 async function actorMain() {
   const { Actor } = await import("apify");
+  console.log("[sni] actor runtime detected, init start");
   await Actor.init();
+  console.log("[sni] apify initialised, reading input");
   try {
     const input = (await Actor.getInput()) || {};
-    const summary = await run(input, (row) => Actor.pushData(row));
-    console.log("run summary:", JSON.stringify(summary, null, 2));
+    console.log(`[sni] input keys: ${Object.keys(input).join(", ") || "(none)"}`);
+    let pushed = 0;
+    // Heartbeat: keeps the event loop alive and makes a stuck probe visible
+    // in the run log instead of a silent exit.
+    const heartbeat = setInterval(() => console.log(`[sni] alive, rows pushed: ${pushed}`), 10000);
+    let summary;
+    try {
+      summary = await run(input, async (row) => {
+        await Actor.pushData(row);
+        pushed += 1;
+      });
+    } finally {
+      clearInterval(heartbeat);
+    }
+    console.log(`[sni] scan done, rows pushed: ${pushed}`);
+    console.log("[sni] run summary:", JSON.stringify(summary));
     await Actor.setValue("SUMMARY", summary);
+    console.log("[sni] SUMMARY stored");
+  } catch (err) {
+    console.error("[sni] actor failed:", err && err.stack ? err.stack : err);
+    throw err;
   } finally {
     await Actor.exit();
+    console.log("[sni] actor exited");
   }
 }
 
 const isActor = Boolean(process.env.APIFY_IS_AT_HOME || process.env.ACTOR_ID || process.env.APIFY_TOKEN);
+process.on("unhandledRejection", (reason) => {
+  console.error("[sni] unhandled rejection:", reason && reason.stack ? reason.stack : reason);
+});
+process.on("uncaughtException", (err) => {
+  console.error("[sni] uncaught exception:", err && err.stack ? err.stack : err);
+});
 (isActor ? actorMain() : localMain()).catch((err) => {
   console.error(err);
   process.exit(1);
