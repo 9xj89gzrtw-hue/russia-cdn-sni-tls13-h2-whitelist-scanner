@@ -51,7 +51,7 @@ async function actorMain() {
 }
 
 const isActor = Boolean(process.env.APIFY_IS_AT_HOME || process.env.ACTOR_ID || process.env.APIFY_TOKEN);
-(isActor ? actorMain : localMain()).catch((err) => {
+(isActor ? actorMain() : localMain()).catch((err) => {
   console.error(err);
   process.exit(1);
 });
