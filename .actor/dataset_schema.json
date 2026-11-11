@@ -1,0 +1,86 @@
+{
+  "title": "SNI scanner dataset",
+  "type": "object",
+  "description": "One row per scanned SNI domain (TLS 1.3 + ALPN h2 + HTTPS verdict with real ping_ms), the free 25-domain demo slice, then the Pro offer summary record.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "description": "Dataset items: scan rows + demo sample + offer record.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "title": "SNI domain",
+            "description": "Scanned SNI domain (lowercase)."
+          },
+          "input": {
+            "type": "string",
+            "title": "User input",
+            "description": "Domain exactly as the user typed it in the Actor input."
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "description": "Operator / CDN category label, e.g. Банки."
+          },
+          "ok": {
+            "type": "boolean",
+            "title": "TLS/HTTPS reachable",
+            "description": "True when the HTTPS status probe succeeded."
+          },
+          "tls13": {
+            "type": "boolean",
+            "title": "TLS 1.3 verified",
+            "description": "True when the bare TLS handshake negotiated TLS 1.3."
+          },
+          "alpn": {
+            "type": "string",
+            "title": "ALPN protocol",
+            "description": "Negotiated ALPN protocol, e.g. h2."
+          },
+          "ping_ms": {
+            "type": "integer",
+            "title": "Real ping_ms",
+            "description": "Measured TLS handshake time in milliseconds."
+          },
+          "https_status": {
+            "type": "integer",
+            "title": "HTTPS status",
+            "description": "HTTPS response status code."
+          },
+          "recommended_client": {
+            "type": "string",
+            "title": "Recommended client",
+            "description": "Happ / v2rayNG / Sing-Box / Nekoray (Reality fp=chrome) recommendation."
+          },
+          "tier": {
+            "type": "string",
+            "title": "Tier",
+            "description": "demo | input | full."
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "demo | input."
+          },
+          "compatibility": {
+            "type": "string",
+            "title": "Compatibility",
+            "description": "VLESS Reality / XHTTP ready (TLS1.3 + h2) | TLS reachable, ALPN not h2 | dead: no TLS/HTTPS handshake"
+          },
+          "fullBaseUrl": {
+            "type": "string",
+            "title": "Full-base store URL",
+            "description": "Storefront URL of the full verified base."
+          },
+          "offer": {
+            "type": "object",
+            "title": "Offer",
+            "description": "Pro offer summary record."
+          }
+        }
+      }
+    }
+  }
+}

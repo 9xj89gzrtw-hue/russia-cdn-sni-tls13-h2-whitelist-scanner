@@ -1,0 +1,58 @@
+{
+  "title": "Russia CDN SNI whitelist scanner input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "domains": {
+      "title": "SNI domains to scan",
+      "type": "array",
+      "description": "SNI domains for TLS 1.3 + ALPN h2 + HTTPS probing, e.g. [\"gosuslugi.ru\", \"mos.ru\"].",
+      "editor": "stringList",
+      "default": [],
+      "items": { "type": "string" }
+    },
+    "includeDemoSample": {
+      "title": "Include the free demo sample of 25 SNI domains",
+      "type": "boolean",
+      "description": "Adds the free 25-domain demo of the 1,384-domain verified white-list base to the dataset.",
+      "default": true
+    },
+    "includeOffer": {
+      "title": "Include the Pro offer record",
+      "type": "boolean",
+      "description": "Adds one summary record with the full-base purchase link for the SNI White-List Pro (TW1-SNI), the RUB price and the Plati.Market card.",
+      "default": true
+    },
+    "concurrency": {
+      "title": "Parallel probe sockets",
+      "type": "integer",
+      "description": "How many DNS+TLS+HTTPS probes to run at once. Keep it at 12 or lower: 40 parallel sockets on a laptop behind a VPN trip both the local resolver and the remote rate-limiters.",
+      "default": 12,
+      "minimum": 1,
+      "maximum": 16
+    },
+    "timeoutSecs": {
+      "title": "Probe timeout (seconds)",
+      "type": "integer",
+      "description": "Per-domain probe timeout.",
+      "default": 12,
+      "minimum": 3,
+      "maximum": 60
+    },
+    "minTls13": {
+      "title": "Minimum TLS 1.3 success rate",
+      "type": "integer",
+      "description": "Optional filter: keep only demo domains verified with TLS 1.3 in this run. 0 keeps everything.",
+      "default": 0,
+      "minimum": 0
+    },
+    "minAlpnH2": {
+      "title": "Minimum ALPN h2 success rate",
+      "type": "integer",
+      "description": "Optional filter: keep only demo domains verified with ALPN h2 in this run. 0 keeps everything.",
+      "default": 0,
+      "minimum": 0
+    }
+  },
+  "required": []
+}

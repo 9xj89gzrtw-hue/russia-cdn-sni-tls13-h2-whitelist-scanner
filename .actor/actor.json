@@ -1,8 +1,15 @@
 {
+  "actorSpecification": 1,
   "name": "russia-cdn-sni-tls13-h2-whitelist-scanner",
   "title": "Russia CDN TLS 1.3 + ALPN h2 White-List SNI Scanner",
   "description": "Apify Actor + local scanner: TLS 1.3 + ALPN h2 + HTTPS probes for Russian white-list SNI domains, VLESS Reality / XHTTP compatibility. Free 25-domain demo, Pro offer lot 6390371.",
-  "version": "1.0.0",
+  "version": "1.0",
+  "buildTag": "latest",
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "../Dockerfile",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
   "categories": [
     "AUTOMATION",
     "DEVELOPER_TOOLS",
